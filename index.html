@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>横浜家系ラーメン 咲く家 | 石橋阪大前</title>
+  <meta name="description" content="横浜家系ラーメン 咲く家。濃厚ながらも食べやすい豚骨醤油スープ。大阪府池田市石橋阪大前駅すぐ。ランチライス無料サービス。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:  #0b0b0b;
+      --cream:  #f4ead8;
+      --gold:   #b8902a;
+      --red:    #c8122a;
+      --white:  #ffffff;
+      --gray:   #888888;
+      --serif:  'Playfair Display', serif;
+      --sans:   'Noto Sans JP', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; font-size: 10px; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--cream);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    /* ─── HEADER ─── */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4rem;
+      height: 7rem;
+      background: rgba(11,11,11,0.92);
+      backdrop-filter: blur(6px);
+      transition: background 0.3s;
+    }
+
+    .header__logo {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.15em;
+      line-height: 1.2;
+    }
+    .header__logo span {
+      display: block;
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-top: 0.2rem;
+    }
+
+    .header__nav {
+      display: flex;
+      gap: 3.5rem;
+      list-style: none;
+    }
+    .header__nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 1.1rem;
+      letter-spacing: 0.2em;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .header__nav a:hover { color: var(--gold); }
+
+    .header__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .header__hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--white);
+      transition: all 0.3s;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 60rem;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 8rem;
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background: url('images/ramen_11.jpg') center center / cover no-repeat;
+    }
+    .hero__bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(11,11,11,0.3) 0%,
+        rgba(11,11,11,0.1) 40%,
+        rgba(11,11,11,0.6) 80%,
+        rgba(11,11,11,0.85) 100%
+      );
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      padding: 0 8rem;
+    }
+
+    .hero__en {
+      font-family: var(--serif);
+      font-size: clamp(4rem, 7vw, 9rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 0.9;
+      letter-spacing: 0.04em;
+    }
+
+    .hero__jp {
+      font-size: clamp(1.4rem, 2vw, 2rem);
+      color: var(--gold);
+      letter-spacing: 0.5em;
+      margin-top: 1.5rem;
+      font-weight: 300;
+    }
+
+    .hero__tagline {
+      margin-top: 2rem;
+      font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.2em;
+      font-weight: 300;
+    }
+
+    .hero__scroll {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.8rem;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+      letter-spacing: 0.3em;
+      text-decoration: none;
+    }
+    .hero__scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 5rem;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+      animation: scrollLine 1.8s ease infinite;
+    }
+    @keyframes scrollLine {
+      0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+      50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+      100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
+    }
+
+    /* ─── SECTIONS COMMON ─── */
+    section { position: relative; }
+
+    .section-label {
+      font-family: var(--serif);
+      font-size: clamp(5rem, 10vw, 12rem);
+      font-weight: 900;
+      color: rgba(11,11,11,0.06);
+      position: absolute;
+      top: -2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      line-height: 1;
+    }
+
+    .section-header {
+      text-align: center;
+      padding-bottom: 5rem;
+    }
+    .section-header__en {
+      font-family: var(--serif);
+      font-size: clamp(2.5rem, 4vw, 4.5rem);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--black);
+    }
+    .section-header__wave {
+      display: block;
+      margin: 1.2rem auto 0;
+      width: 4rem;
+      height: 2px;
+      background: var(--gold);
+    }
+    .section-header__jp {
+      display: block;
+      font-size: 1.1rem;
+      letter-spacing: 0.4em;
+      color: var(--gray);
+      margin-top: 1.2rem;
+      font-weight: 300;
+    }
+
+    /* ─── CONCEPT ─── */
+    .concept {
+      padding: 12rem 0 10rem;
+      background: var(--black);
+      overflow: hidden;
+    }
+
+    .concept__inner {
+      max-width: 120rem;
+      margin: 0 auto;
+      padding: 0 6rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+      align-items: center;
+    }
+
+    .concept__img {
+      position: relative;
+      overflow: hidden;
+    }
+    .concept__img img {
+      width: 100%;
+      height: 55rem;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .concept__img:hover img { transform: scale(1.03); }
+
+    .concept__text { color: var(--white); }
+
+    .concept__en {
+      font-family: var(--sans);
+      font-size: clamp(2.8rem, 4vw, 5rem);
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--white);
+      letter-spacing: 0.05em;
+    }
+    .concept__en em {
+      color: var(--gold);
+      font-style: normal;
+    }
+
+    .concept__divider {
+      width: 4rem;
+      height: 1px;
+      background: var(--gold);
+      margin: 3rem 0;
+    }
+
+    .concept__jp {
+      font-size: 1.5rem;
+      line-height: 2.2;
+      color: rgba(255,255,255,0.8);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+    }
+
+    .concept__badge {
+      display: inline-block;
+      margin-top: 3rem;
+      padding: 1rem 2.5rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 1.2rem;
+      letter-spacing: 0.3em;
+      font-weight: 300;
+    }
+
+    /* ─── MENU ─── */
+    .menu {
+      padding: 12rem 0 10rem;
+      background: var(--cream);
+      overflow: hidden;
+    }
+
+    .menu__inner {
+      max-width: 120rem;
+      margin: 0 auto;
+      padding: 0 6rem;
+    }
+
+    .menu__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+
+    .menu-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--black);
+    }
+    .menu-card__img {
+      width: 100%;
+      height: 30rem;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+      opacity: 0.9;
+    }
+    .menu-card:hover .menu-card__img {
+      transform: scale(1.06);
+      opacity: 0.7;
+    }
+    .menu-card__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(11,11,11,0.85) 0%, transparent 50%);
+    }
+    .menu-card__body {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2.5rem;
+    }
+    .menu-card__kanji {
+      font-family: var(--serif);
+      font-size: 5rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.15);
+      line-height: 1;
+      margin-bottom: -1rem;
+    }
+    .menu-card__name {
+      font-size: 1.8rem;
+      color: var(--white);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+    }
+    .menu-card__price {
+      font-size: 1.2rem;
+      color: var(--gold);
+      margin-top: 0.5rem;
+      letter-spacing: 0.1em;
+    }
+    .menu-card__desc {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.65);
+      margin-top: 0.8rem;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .menu__note {
+      text-align: center;
+      margin-top: 5rem;
+      padding: 3rem;
+      border: 1px solid rgba(11,11,11,0.15);
+      display: inline-block;
+      width: 100%;
+    }
+    .menu__note p {
+      font-size: 1.3rem;
+      color: var(--black);
+      letter-spacing: 0.15em;
+      line-height: 2;
+      font-weight: 300;
+    }
+    .menu__note strong {
+      color: var(--red);
+      font-weight: 700;
+    }
+
+    /* ─── GALLERY ─── */
+    .gallery {
+      padding: 12rem 0 10rem;
+      background: var(--black);
+      overflow: hidden;
+    }
+
+    .gallery__inner {
+      max-width: 120rem;
+      margin: 0 auto;
+      padding: 0 6rem;
+    }
+
+    .gallery__section-header .section-header__en { color: var(--white); }
+    .gallery__section-header .section-header__jp { color: rgba(255,255,255,0.4); }
+
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .gallery__item {
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery__item--large {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    .gallery__item img {
+      width: 100%;
+      height: 100%;
+      min-height: 22rem;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+      filter: brightness(0.9);
+    }
+    .gallery__item:hover img {
+      transform: scale(1.05);
+      filter: brightness(1);
+    }
+
+    /* ─── SERVICE ─── */
+    .service {
+      padding: 10rem 0;
+      background: var(--cream);
+    }
+    .service__inner {
+      max-width: 120rem;
+      margin: 0 auto;
+      padding: 0 6rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4rem;
+    }
+    .service-item {
+      text-align: center;
+      padding: 4rem 3rem;
+      border: 1px solid rgba(11,11,11,0.12);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .service-item:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+    .service-item__num {
+      font-family: var(--serif);
+      font-size: 5rem;
+      color: rgba(11,11,11,0.07);
+      line-height: 1;
+      font-weight: 900;
+    }
+    .service-item__icon {
+      font-size: 3rem;
+      margin: 1rem 0;
+    }
+    .service-item__title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--black);
+      margin-bottom: 1.5rem;
+    }
+    .service-item__text {
+      font-size: 1.2rem;
+      color: var(--gray);
+      line-height: 2;
+      font-weight: 300;
+    }
+
+    /* ─── ACCESS ─── */
+    .access {
+      padding: 12rem 0 0;
+      background: var(--black);
+      overflow: hidden;
+    }
+
+    .access__inner {
+      max-width: 120rem;
+      margin: 0 auto;
+      padding: 0 6rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8rem;
+      align-items: start;
+    }
+
+    .access__section-header .section-header__en { color: var(--white); }
+    .access__section-header .section-header__jp { color: rgba(255,255,255,0.4); }
+    .access__section-header { text-align: left; padding-bottom: 4rem; }
+    .access__section-header .section-header__wave { margin-left: 0; }
+
+    .access__store {
+      margin-bottom: 4rem;
+    }
+    .access__store-name {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      color: var(--white);
+      font-weight: 700;
+      margin-bottom: 2rem;
+      letter-spacing: 0.08em;
+    }
+
+    .access__table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .access__table th,
+    .access__table td {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      vertical-align: top;
+      text-align: left;
+    }
+    .access__table th {
+      width: 9rem;
+      font-size: 1.1rem;
+      color: var(--gold);
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      white-space: nowrap;
+    }
+    .access__table td {
+      font-size: 1.3rem;
+      color: rgba(255,255,255,0.8);
+      font-weight: 300;
+      line-height: 1.8;
+      padding-left: 2rem;
+    }
+
+    .access__img-wrap {
+      overflow: hidden;
+      height: 45rem;
+    }
+    .access__img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .access__img-wrap:hover img { transform: scale(1.03); }
+
+    .access__maps {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 6rem;
+    }
+    .access__map-item {
+      position: relative;
+    }
+    .access__map-label {
+      background: var(--gold);
+      color: var(--black);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+    .access__map-item iframe {
+      width: 100%;
+      height: 38rem;
+      border: none;
+      display: block;
+      filter: grayscale(20%);
+    }
+
+    @media (max-width: 768px) {
+      .access__maps { grid-template-columns: 1fr; }
+    }
+
+    /* ─── FOOTER ─── */
+    .footer {
+      background: var(--black);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 6rem;
+    }
+    .footer__inner {
+      max-width: 120rem;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 3rem;
+    }
+
+    .footer__logo {
+      font-family: var(--serif);
+      font-size: 3rem;
+      color: var(--white);
+      font-weight: 900;
+      letter-spacing: 0.1em;
+    }
+    .footer__logo span {
+      display: block;
+      font-family: var(--sans);
+      font-size: 1rem;
+      color: var(--gold);
+      letter-spacing: 0.4em;
+      font-weight: 300;
+      margin-top: 0.5rem;
+    }
+
+    .footer__nav {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    .footer__nav a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 1.1rem;
+      letter-spacing: 0.15em;
+      transition: color 0.2s;
+    }
+    .footer__nav a:hover { color: var(--gold); }
+
+    .footer__sns {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    .footer__sns a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      transition: color 0.2s;
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 0.8rem 1.8rem;
+      display: inline-block;
+    }
+    .footer__sns a:hover {
+      color: var(--white);
+      border-color: var(--gold);
+    }
+
+    .footer__copy {
+      width: 100%;
+      text-align: center;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 3rem;
+      color: rgba(255,255,255,0.25);
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+    }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 768px) {
+      .header { padding: 0 2rem; height: 6rem; }
+      .header__nav { display: none; }
+      .header__hamburger { display: flex; }
+
+      .header__nav.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 6rem; left: 0; right: 0; bottom: 0;
+        background: rgba(11,11,11,0.97);
+        align-items: center;
+        justify-content: center;
+        gap: 4rem;
+      }
+      .header__nav.open a { font-size: 2rem; }
+
+      .hero { min-height: 100svh; padding-bottom: 10rem; }
+      .hero__content { padding: 0 2.5rem; }
+      .hero__en { font-size: clamp(4rem, 12vw, 7rem); }
+
+      .concept__inner { grid-template-columns: 1fr; gap: 4rem; padding: 0 2.5rem; }
+      .concept__img img { height: 35rem; }
+
+      .menu__inner { padding: 0 2rem; }
+      .menu__grid { grid-template-columns: 1fr; gap: 2rem; }
+      .menu-card__img { height: 28rem; }
+
+      .gallery__inner { padding: 0 2rem; }
+      .gallery__grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery__item--large { grid-column: span 1; grid-row: span 1; }
+
+      .service__inner { grid-template-columns: 1fr; padding: 0 2rem; gap: 2rem; }
+
+      .access__inner { grid-template-columns: 1fr; padding: 0 2rem; gap: 4rem; }
+      .access__img-wrap { height: 30rem; }
+
+      .footer { padding: 4rem 2rem; }
+      .footer__inner { flex-direction: column; align-items: flex-start; }
+
+      .section-label { font-size: 7rem; }
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <a href="#" class="header__logo">
+      咲く家
+      <span>SAKUYA RAMEN</span>
+    </a>
+    <nav>
+      <ul class="header__nav" id="nav">
+        <li><a href="#concept">コンセプト</a></li>
+        <li><a href="#menu">メニュー</a></li>
+        <li><a href="#gallery">ギャラリー</a></li>
+        <li><a href="#access">アクセス</a></li>
+      </ul>
+    </nav>
+    <button class="header__hamburger" id="hamburger" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero__bg" id="heroBg"></div>
+    <div class="hero__content">
+      <p class="hero__jp fade-in">横浜家系ラーメン</p>
+      <h1 class="hero__en fade-in fade-in-delay-1">SAKUYA</h1>
+      <p class="hero__tagline fade-in fade-in-delay-2">濃厚ながらも、食べやすい。</p>
+    </div>
+    <a href="#concept" class="hero__scroll">SCROLL</a>
+  </section>
+
+  <!-- CONCEPT -->
+  <section class="concept" id="concept">
+    <div class="concept__inner">
+      <div class="concept__img fade-in">
+        <img src="images/ramen_02.jpg" alt="咲く家の家系ラーメン" loading="lazy">
+      </div>
+      <div class="concept__text">
+        <div class="section-label">CONCEPT</div>
+        <h2 class="concept__en fade-in">
+          一杯に、<br><em>魂</em>を込めて。
+        </h2>
+        <div class="concept__divider fade-in fade-in-delay-1"></div>
+        <p class="concept__jp fade-in fade-in-delay-1">
+          横浜で生まれた家系ラーメン。<br>
+          豚骨と醤油が織りなす、<br>
+          深みのあるスープ。<br><br>
+          濃厚でありながら食べやすく、<br>
+          一杯ごとに咲く家の世界へ。<br><br>
+          お好みに合わせて<br>
+          醤油の濃さ・味の濃さを選べます。
+        </p>
+        <span class="concept__badge fade-in fade-in-delay-2">ランチライス 無料サービス</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="menu" id="menu">
+    <div class="menu__inner">
+      <div class="section-label">MENU</div>
+      <div class="section-header fade-in">
+        <h2 class="section-header__en">Menu</h2>
+        <span class="section-header__wave"></span>
+        <span class="section-header__jp">お品書き</span>
+      </div>
+
+      <div class="menu__grid">
+        <div class="menu-card fade-in">
+          <img class="menu-card__img" src="images/ramen_11.jpg" alt="ラーメン" loading="lazy">
+          <div class="menu-card__overlay"></div>
+          <div class="menu-card__body">
+            <div class="menu-card__kanji">醤</div>
+            <div class="menu-card__name">ラーメン</div>
+            <div class="menu-card__price">¥880〜</div>
+            <div class="menu-card__desc">豚骨醤油スープに太麺。<br>チャーシュー・ほうれん草・海苔。</div>
+          </div>
+        </div>
+
+        <div class="menu-card fade-in fade-in-delay-1">
+          <img class="menu-card__img" src="images/ramen_12.jpg" alt="得MAXラーメン" loading="lazy">
+          <div class="menu-card__overlay"></div>
+          <div class="menu-card__body">
+            <div class="menu-card__kanji">得</div>
+            <div class="menu-card__name">得MAXラーメン</div>
+            <div class="menu-card__price">※価格は店頭でご確認</div>
+            <div class="menu-card__desc">ボリューム満点の大盛りスペシャル。<br>ライスと一緒にどうぞ。</div>
+          </div>
+        </div>
+
+        <div class="menu-card fade-in fade-in-delay-2">
+          <img class="menu-card__img" src="images/ramen_13.jpg" alt="チャーシューメン" loading="lazy">
+          <div class="menu-card__overlay"></div>
+          <div class="menu-card__body">
+            <div class="menu-card__kanji">叉</div>
+            <div class="menu-card__name">チャーシューメン</div>
+            <div class="menu-card__price">※価格は店頭でご確認</div>
+            <div class="menu-card__desc">肉厚チャーシューをたっぷりと。<br>肉好きに贈る一杯。</div>
+          </div>
+        </div>
+
+        <div class="menu-card fade-in">
+          <img class="menu-card__img" src="images/ramen_04.jpg" alt="ネギラーメン" loading="lazy">
+          <div class="menu-card__overlay"></div>
+          <div class="menu-card__body">
+            <div class="menu-card__kanji">葱</div>
+            <div class="menu-card__name">ネギラーメン</div>
+            <div class="menu-card__price">※価格は店頭でご確認</div>
+            <div class="menu-card__desc">白ネギをたっぷり。<br>スープの旨みが引き立つ。</div>
+          </div>
+        </div>
+
+        <div class="menu-card fade-in fade-in-delay-1">
+          <img class="menu-card__img" src="images/ramen_05.jpg" alt="野菜ラーメン" loading="lazy">
+          <div class="menu-card__overlay"></div>
+          <div class="menu-card__body">
+            <div class="menu-card__kanji">菜</div>
+            <div class="menu-card__name">野菜ラーメン</div>
+            <div class="menu-card__price">※価格は店頭でご確認</div>
+            <div class="menu-card__desc">野菜増量でヘルシーに。<br>栄養バランスも◎</div>
+          </div>
+        </div>
+
+        <div class="menu-card fade-in fade-in-delay-2">
+          <img class="menu-card__img" src="images/ramen_10.jpg" alt="店舗外観" loading="lazy">
+          <div class="menu-card__overlay"></div>
+          <div class="menu-card__body">
+            <div class="menu-card__kanji">餃</div>
+            <div class="menu-card__name">サイドメニュー</div>
+            <div class="menu-card__price">餃子 / チャーハン 他</div>
+            <div class="menu-card__desc">ラーメンと一緒に<br>サイドメニューもどうぞ。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu__note fade-in">
+        <p>
+          スープの <strong>濃さ</strong>・<strong>味の濃さ</strong>・<strong>油の量</strong> はお好みに合わせてカスタマイズ可能です。<br>
+          <strong>ランチタイム（11:00〜14:30）はライス無料サービス中！</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+    <div class="gallery__inner">
+      <div class="section-label" style="color:rgba(255,255,255,0.04)">GALLERY</div>
+      <div class="section-header gallery__section-header fade-in">
+        <h2 class="section-header__en">Gallery</h2>
+        <span class="section-header__wave"></span>
+        <span class="section-header__jp">フォトギャラリー</span>
+      </div>
+
+      <div class="gallery__grid">
+        <div class="gallery__item gallery__item--large fade-in">
+          <img src="images/ramen_02.jpg" alt="家系ラーメン 咲く家" loading="lazy">
+        </div>
+        <div class="gallery__item fade-in fade-in-delay-1">
+          <img src="images/ramen_03.jpg" alt="麺" loading="lazy">
+        </div>
+        <div class="gallery__item fade-in fade-in-delay-2">
+          <img src="images/ramen_07.jpg" alt="ラーメン" loading="lazy">
+        </div>
+        <div class="gallery__item fade-in fade-in-delay-1">
+          <img src="images/ramen_06.jpg" alt="スープ" loading="lazy">
+        </div>
+        <div class="gallery__item fade-in fade-in-delay-2">
+          <img src="images/interior_02.jpg" alt="店内" loading="lazy">
+        </div>
+        <div class="gallery__item fade-in">
+          <img src="images/ramen_13.jpg" alt="チャーシューメン" loading="lazy">
+        </div>
+        <div class="gallery__item fade-in fade-in-delay-1">
+          <img src="images/interior_01.jpg" alt="テーブル" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE POINTS -->
+  <section class="service">
+    <div class="service__inner">
+      <div class="service-item fade-in">
+        <div class="service-item__num">01</div>
+        <div class="service-item__icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 18 Q16 10 28 18" stroke="#b8902a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <ellipse cx="16" cy="22" rx="12" ry="5" stroke="#b8902a" stroke-width="2" fill="none"/>
+            <line x1="10" y1="12" x2="10" y2="8" stroke="#b8902a" stroke-width="2" stroke-linecap="round"/>
+            <line x1="16" y1="10" x2="16" y2="6" stroke="#b8902a" stroke-width="2" stroke-linecap="round"/>
+            <line x1="22" y1="12" x2="22" y2="8" stroke="#b8902a" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="service-item__title">本格家系スープ</div>
+        <p class="service-item__text">豚骨と醤油を丁寧に炊き上げた<br>濃厚ながら食べやすいスープ</p>
+      </div>
+      <div class="service-item fade-in fade-in-delay-1">
+        <div class="service-item__num">02</div>
+        <div class="service-item__icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="20" width="20" height="3" rx="1.5" stroke="#b8902a" stroke-width="2" fill="none"/>
+            <path d="M8 20 C8 14 24 14 24 20" stroke="#b8902a" stroke-width="2" fill="none"/>
+            <line x1="16" y1="8" x2="16" y2="14" stroke="#b8902a" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="16" cy="6" r="2" stroke="#b8902a" stroke-width="2" fill="none"/>
+          </svg>
+        </div>
+        <div class="service-item__title">ランチライス無料</div>
+        <p class="service-item__text">平日・土日のランチタイムは<br>ご飯が無料でおかわりできます</p>
+      </div>
+      <div class="service-item fade-in fade-in-delay-2">
+        <div class="service-item__num">03</div>
+        <div class="service-item__icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="10" stroke="#b8902a" stroke-width="2" fill="none"/>
+            <circle cx="16" cy="16" r="4" stroke="#b8902a" stroke-width="2" fill="none"/>
+            <line x1="16" y1="4" x2="16" y2="8" stroke="#b8902a" stroke-width="2" stroke-linecap="round"/>
+            <line x1="16" y1="24" x2="16" y2="28" stroke="#b8902a" stroke-width="2" stroke-linecap="round"/>
+            <line x1="4" y1="16" x2="8" y2="16" stroke="#b8902a" stroke-width="2" stroke-linecap="round"/>
+            <line x1="24" y1="16" x2="28" y2="16" stroke="#b8902a" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="service-item__title">カスタマイズ自由</div>
+        <p class="service-item__text">醤油・濃さ・油の量を<br>お好みに合わせて調整できます</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCESS -->
+  <section class="access" id="access">
+    <div class="access__inner">
+      <div>
+        <div class="section-header access__section-header fade-in">
+          <h2 class="section-header__en">Access</h2>
+          <span class="section-header__wave"></span>
+          <span class="section-header__jp">店舗案内</span>
+        </div>
+
+        <div class="access__store">
+          <div class="access__store-name fade-in">石橋阪大前店</div>
+          <table class="access__table">
+            <tr class="fade-in">
+              <th>住所</th>
+              <td>大阪府池田市石橋1-8-10<br>石橋ステーションプラザビル 2F</td>
+            </tr>
+            <tr class="fade-in fade-in-delay-1">
+              <th>アクセス</th>
+              <td>石橋阪大前駅より徒歩3分（250m）</td>
+            </tr>
+            <tr class="fade-in fade-in-delay-1">
+              <th>営業時間</th>
+              <td>
+                月〜金：11:00〜14:30 / 17:00〜23:30<br>
+                土：11:00〜15:00 / 17:00〜24:00<br>
+                日：11:00〜15:00 / 17:00〜23:00
+              </td>
+            </tr>
+            <tr class="fade-in fade-in-delay-2">
+              <th>定休日</th>
+              <td>不定休（SNSでご確認ください）</td>
+            </tr>
+            <tr class="fade-in fade-in-delay-2">
+              <th>席数</th>
+              <td>19席（カウンター席あり）</td>
+            </tr>
+            <tr class="fade-in fade-in-delay-2">
+              <th>予約</th>
+              <td>予約不可・現金のみ</td>
+            </tr>
+            <tr class="fade-in fade-in-delay-2">
+              <th>駐車場</th>
+              <td>なし（近隣にコインパーキング有）</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="access__store" style="margin-top: 4rem;">
+          <div class="access__store-name fade-in" style="font-size:1.8rem; color: rgba(255,255,255,0.6);">阪神尼崎店</div>
+          <table class="access__table">
+            <tr class="fade-in">
+              <th>住所</th>
+              <td>兵庫県尼崎市神田中通2-27-12</td>
+            </tr>
+            <tr class="fade-in fade-in-delay-1">
+              <th>アクセス</th>
+              <td>阪神尼崎駅より徒歩2分（約160m）</td>
+            </tr>
+            <tr class="fade-in fade-in-delay-1">
+              <th>電話</th>
+              <td><a href="tel:06-4950-9722" style="color:inherit;text-decoration:none;">06-4950-9722</a></td>
+            </tr>
+            <tr class="fade-in fade-in-delay-2">
+              <th>営業時間</th>
+              <td>11:00〜15:00 / 17:00〜22:30</td>
+            </tr>
+            <tr class="fade-in fade-in-delay-2">
+              <th>席数</th>
+              <td>20席（カウンター12席・テーブル8席）</td>
+            </tr>
+            <tr class="fade-in fade-in-delay-2">
+              <th>予約</th>
+              <td>予約不可・現金のみ</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="access__img-wrap fade-in">
+        <img src="images/ramen_10.jpg" alt="横浜家系ラーメン咲く家 石橋阪大前店" loading="lazy">
+      </div>
+    </div>
+
+    <div class="access__maps fade-in">
+      <div class="access__map-item">
+        <div class="access__map-label">石橋阪大前店</div>
+        <iframe
+          src="https://maps.google.com/maps?q=大阪府池田市石橋1-8-10+石橋ステーションプラザビル&output=embed&hl=ja&z=17"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="横浜家系ラーメン咲く家 石橋阪大前店 地図">
+        </iframe>
+      </div>
+      <div class="access__map-item">
+        <div class="access__map-label">阪神尼崎店</div>
+        <iframe
+          src="https://maps.google.com/maps?q=兵庫県尼崎市神田中通2-27-12&output=embed&hl=ja&z=17"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="横浜家系ラーメン咲く家 阪神尼崎店 地図">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__logo">
+        咲く家
+        <span>YOKOHAMA IE-KEI RAMEN</span>
+      </div>
+      <ul class="footer__nav">
+        <li><a href="#concept">コンセプト</a></li>
+        <li><a href="#menu">メニュー</a></li>
+        <li><a href="#gallery">ギャラリー</a></li>
+        <li><a href="#access">アクセス</a></li>
+      </ul>
+      <div class="footer__sns">
+        <a href="https://www.instagram.com/sakuya__ramen/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+      <p class="footer__copy">© 2026 横浜家系ラーメン 咲く家 All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('nav');
+    hamburger.addEventListener('click', () => {
+      nav.classList.toggle('open');
+    });
+    nav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => nav.classList.remove('open'));
+    });
+
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Header opacity on scroll
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        header.style.background = 'rgba(11,11,11,0.97)';
+      } else {
+        header.style.background = 'rgba(11,11,11,0.92)';
+      }
+    });
+
+    // Trigger hero fade-ins immediately
+    document.querySelectorAll('.hero .fade-in').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), 300 + i * 200);
+    });
+  </script>
+
+</body>
+</html>
