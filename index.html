@@ -495,7 +495,7 @@
 
     /* ─── ACCESS ─── */
     .access {
-      padding: 12rem 0 0;
+      padding: 12rem 0 12rem;
       background: var(--black);
       overflow: hidden;
     }
@@ -504,10 +504,6 @@
       max-width: 120rem;
       margin: 0 auto;
       padding: 0 6rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8rem;
-      align-items: start;
     }
 
     .access__section-header .section-header__en { color: var(--white); }
@@ -516,7 +512,14 @@
     .access__section-header .section-header__wave { margin-left: 0; }
 
     .access__store {
-      margin-bottom: 4rem;
+      margin-bottom: 8rem;
+    }
+    .access__store:last-child { margin-bottom: 0; }
+    .access__store-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: stretch;
     }
     .access__store-name {
       font-family: var(--serif);
@@ -556,7 +559,8 @@
 
     .access__img-wrap {
       overflow: hidden;
-      height: 45rem;
+      height: 32rem;
+      margin-bottom: 6rem;
     }
     .access__img-wrap img {
       width: 100%;
@@ -567,33 +571,16 @@
     }
     .access__img-wrap:hover img { transform: scale(1.03); }
 
-    .access__maps {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      margin-top: 6rem;
+    .access__map {
+      min-height: 36rem;
     }
-    .access__map-item {
-      position: relative;
-    }
-    .access__map-label {
-      background: var(--gold);
-      color: var(--black);
-      font-size: 1.1rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      padding: 1rem 2rem;
-      text-align: center;
-    }
-    .access__map-item iframe {
+    .access__map iframe {
       width: 100%;
-      height: 38rem;
+      height: 100%;
+      min-height: 36rem;
       border: none;
       display: block;
       filter: grayscale(20%);
-    }
-
-    @media (max-width: 768px) {
-      .access__maps { grid-template-columns: 1fr; }
     }
 
     /* ─── FOOTER ─── */
@@ -710,8 +697,12 @@
 
       .service__inner { grid-template-columns: 1fr; padding: 0 2rem; gap: 2rem; }
 
-      .access__inner { grid-template-columns: 1fr; padding: 0 2rem; gap: 4rem; }
-      .access__img-wrap { height: 30rem; }
+      .access__inner { padding: 0 2rem; }
+      .access__img-wrap { height: 26rem; margin-bottom: 4rem; }
+      .access__store { margin-bottom: 6rem; }
+      .access__store-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .access__map { min-height: 30rem; }
+      .access__map iframe { min-height: 30rem; }
 
       .footer { padding: 4rem 2rem; }
       .footer__inner { flex-direction: column; align-items: flex-start; }
@@ -944,15 +935,19 @@
   <!-- ACCESS -->
   <section class="access" id="access">
     <div class="access__inner">
-      <div>
-        <div class="section-header access__section-header fade-in">
-          <h2 class="section-header__en">Access</h2>
-          <span class="section-header__wave"></span>
-          <span class="section-header__jp">店舗案内</span>
-        </div>
+      <div class="section-header access__section-header fade-in">
+        <h2 class="section-header__en">Access</h2>
+        <span class="section-header__wave"></span>
+        <span class="section-header__jp">店舗案内</span>
+      </div>
 
-        <div class="access__store">
-          <div class="access__store-name fade-in">石橋阪大前店</div>
+      <div class="access__img-wrap fade-in">
+        <img src="images/ramen_10.jpg" alt="横浜家系ラーメン咲く家 石橋阪大前店" loading="lazy">
+      </div>
+
+      <div class="access__store">
+        <div class="access__store-name fade-in">石橋阪大前店</div>
+        <div class="access__store-grid">
           <table class="access__table">
             <tr class="fade-in">
               <th>住所</th>
@@ -987,10 +982,21 @@
               <td>なし（近隣にコインパーキング有）</td>
             </tr>
           </table>
+          <div class="access__map fade-in">
+            <iframe
+              src="https://maps.google.com/maps?q=大阪府池田市石橋1-8-10+石橋ステーションプラザビル&output=embed&hl=ja&z=17"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="横浜家系ラーメン咲く家 石橋阪大前店 地図">
+            </iframe>
+          </div>
         </div>
+      </div>
 
-        <div class="access__store" style="margin-top: 4rem;">
-          <div class="access__store-name fade-in" style="font-size:1.8rem; color: rgba(255,255,255,0.6);">阪神尼崎店</div>
+      <div class="access__store">
+        <div class="access__store-name fade-in">阪神尼崎店</div>
+        <div class="access__store-grid">
           <table class="access__table">
             <tr class="fade-in">
               <th>住所</th>
@@ -1017,34 +1023,16 @@
               <td>予約不可・現金のみ</td>
             </tr>
           </table>
+          <div class="access__map fade-in">
+            <iframe
+              src="https://maps.google.com/maps?q=兵庫県尼崎市神田中通2-27-12&output=embed&hl=ja&z=17"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="横浜家系ラーメン咲く家 阪神尼崎店 地図">
+            </iframe>
+          </div>
         </div>
-      </div>
-
-      <div class="access__img-wrap fade-in">
-        <img src="images/ramen_10.jpg" alt="横浜家系ラーメン咲く家 石橋阪大前店" loading="lazy">
-      </div>
-    </div>
-
-    <div class="access__maps fade-in">
-      <div class="access__map-item">
-        <div class="access__map-label">石橋阪大前店</div>
-        <iframe
-          src="https://maps.google.com/maps?q=大阪府池田市石橋1-8-10+石橋ステーションプラザビル&output=embed&hl=ja&z=17"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="横浜家系ラーメン咲く家 石橋阪大前店 地図">
-        </iframe>
-      </div>
-      <div class="access__map-item">
-        <div class="access__map-label">阪神尼崎店</div>
-        <iframe
-          src="https://maps.google.com/maps?q=兵庫県尼崎市神田中通2-27-12&output=embed&hl=ja&z=17"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="横浜家系ラーメン咲く家 阪神尼崎店 地図">
-        </iframe>
       </div>
     </div>
   </section>
